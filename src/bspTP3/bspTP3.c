@@ -1,9 +1,10 @@
 /*
- * bsp.c
+ * bspTP3.c
  *
- *  Created on: 26 de ago. de 2016
- *      Author: Matias Labedz
+ *  Created on: 1 de feb. de 2017
+ *      Author: jmLerda
  */
+
 #include "bspTP3.h"
 
 UART_HandleTypeDef UART3_Handle;
@@ -48,7 +49,6 @@ void BSP_RCC_Init(void) {
 	HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5);
 }
 
-
 void BSP_UART_Init(void) {
 
 	GPIO_InitTypeDef GPIO_InitStruct;
@@ -84,7 +84,6 @@ void BSP_UART_Init(void) {
 
 void TransmitData(uint8_t *buffer, uint8_t size) {
 	HAL_UART_Transmit(&UART3_Handle, buffer, size, 100);
-
 }
 
 void USART3_IRQHandler(void) {

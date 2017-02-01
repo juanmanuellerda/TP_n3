@@ -1,8 +1,8 @@
 /*
- * bsp.h
+ * bspTP3.c
  *
- *  Created on: 26 de ago. de 2016
- *      Author: Matias Labedz
+ *  Created on: 1 de feb. de 2017
+ *      Author: jmLerda
  */
 
 #ifndef BSPTP3_BSPTP3_H_
