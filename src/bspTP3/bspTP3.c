@@ -14,13 +14,6 @@ uint8_t dato;
 
 extern void APP_GetData(uint8_t dato);
 
-void BSP_Init(void) {
-	BSP_RCC_Init();
-	BSP_UART_Init();
-	BSP_SW_Init();
-	BSP_ADC_Init();
-}
-
 void BSP_RCC_Init(void) {
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 	RCC_ClkInitTypeDef RCC_ClkInitStruct;
@@ -159,3 +152,35 @@ uint16_t BSP_ADC_GetValue(void){
 	HAL_ADC_Start(&ADC_HandleStruct);
 		return HAL_ADC_GetValue(&ADC_HandleStruct);
 }
+
+void BSP_LEDS_Init(void){
+
+	__GPIOD_CLK_ENABLE()
+	;
+
+	GPIO_InitTypeDef GPIO_Init;
+
+	GPIO_Init.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_Init.Pull = GPIO_NOPULL;
+	GPIO_Init.Speed = GPIO_SPEED_FAST;
+	GPIO_Init.Pin = ALL_LEDS;
+	HAL_GPIO_Init(LEDS_PORT, &GPIO_Init);
+}
+
+void LedToggle(uint16_t led) {
+	HAL_GPIO_TogglePin(LEDS_PORT,led);
+}
+
+uint32_t Get_LED_State(uint16_t led){
+	return HAL_GPIO_ReadPin(LEDS_PORT, led);
+}
+
+void BSP_Init(void) {
+	BSP_RCC_Init();
+	BSP_UART_Init();
+	BSP_SW_Init();
+	BSP_ADC_Init();
+	BSP_LEDS_Init();
+}
+
+
